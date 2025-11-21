@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiroi Yoru</title>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="shortcut icon" href="src/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo-full">
+            <img src="src/img/logo-full-removebg-preview.png" alt="Logo Shiroi Yoru" id="char-img">
+        </div>
+    <!-- Header -->
+    <header>
+        
+        <div class="avatar-frame">
+            <img src="src/img/user.png" alt="Kegan Mikazuki" id="char-img">
+        </div>
+        <div class="header-info">
+            <div class="campaign-tag">Campanha: Shiroi Yoru</div>
+            <h1>Kazuki</h1>
+            <div class="japanese-name">慧眼 三日月</div>
+            
+            <div class="identity-grid">
+                <div class="identity-item"><strong>Raça:</strong> Humano (Exterminador)</div>
+                <div class="identity-item"><strong>Patente:</strong> Mizunoto (Nv 1)</div>
+                <div class="identity-item"><strong>Idade:</strong> 15 anos</div>
+                <div class="identity-item"><strong>Jogador:</strong> Salomão Gentil</div>
+                <div class="identity-item" style="grid-column: 1 / -1;"><strong>Conceito:</strong> O Espadachim dos Olhos da Lua</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Atributos -->
+    <div class="section-title">Atributos</div>
+    <div class="content-pad">
+        <div class="attributes-grid">
+            <div class="attr-card" onclick="rollDice(20, 4, 'Teste de Destreza')">
+                <span class="attr-name">DESTREZA (DEX)</span>
+                <span class="attr-value">4</span>
+            </div>
+            <div class="attr-card" onclick="rollDice(20, 3, 'Teste de Vontade')">
+                <span class="attr-name">VONTADE (FDV)</span>
+                <span class="attr-value">3</span>
+            </div>
+            <div class="attr-card" onclick="rollDice(20, 2, 'Teste de Vitalidade')">
+                <span class="attr-name">VITALIDADE (VIT)</span>
+                <span class="attr-value">2</span>
+            </div>
+            <div class="attr-card" onclick="rollDice(20, 2, 'Teste de Sabedoria')">
+                <span class="attr-name">SABEDORIA (SAB)</span>
+                <span class="attr-value">2</span>
+            </div>
+            <div class="attr-card" onclick="rollDice(20, 1, 'Teste de Força')">
+                <span class="attr-name">FORÇA (FOR)</span>
+                <span class="attr-value">1</span>
+            </div>
+            <div class="attr-card" onclick="rollDice(20, 1, 'Teste de Inteligência')">
+                <span class="attr-name">INTELIGÊNCIA (INT)</span>
+                <span class="attr-value">1</span>
+            </div>
+            <div class="attr-card" onclick="rollDice(20, 1, 'Teste de Carisma')">
+                <span class="attr-name">CARISMA (CAR)</span>
+                <span class="attr-value">1</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status de Combate -->
+    <div class="section-title">Status de Combate</div>
+    <div class="content-pad">
+        <div class="bars-container">
+            <div class="resource-box">
+                <div>
+                    <span class="attr-name">PONTOS DE VIDA (PDV)</span>
+                    <h2 id="hp-display"><span id="current-hp">13</span> / 13</h2>
+                </div>
+                <div class="resource-controls">
+                    <button onclick="modifyStat('hp', -1)">-</button>
+                    <button onclick="modifyStat('hp', 1)">+</button>
+                </div>
+            </div>
+            <div class="resource-box">
+                <div>
+                    <span class="attr-name">RESPIRAÇÃO (PDR)</span>
+                    <h2 id="breath-display"><span id="current-pdr">5</span> / 5</h2>
+                </div>
+                <div class="resource-controls">
+                    <button onclick="modifyStat('pdr', -1)">-</button>
+                    <button onclick="modifyStat('pdr', 1)">+</button>
+                </div>
+            </div>
+            <div class="resource-box">
+                <div>
+                    <span class="attr-name">DESLOCAMENTO</span>
+                    <h2>11m</h2>
+                </div>
+            </div>
+            <div class="resource-box">
+                <div style="width:100%">
+                    <span class="attr-name">INICIATIVA</span>
+                    <button class="roll-btn" onclick="rollDice(20, 4, 'Iniciativa')">Rolar (1d20+4)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="combat-grid">
+            <!-- Ofensiva -->
+            <div class="card">
+                <h3 style="color:var(--primary-color); margin-bottom: 10px;">Katana Nichirin (Verde)</h3>
+                <ul class="weapon-stats">
+                    <li><span>Acerto (1d20 + DEX + 1)</span> <strong>+5</strong></li>
+                    <li><span>Dano (1 Mão)</span> <strong>5 (Corte)</strong></li>
+                    <li><span>Dano (2 Mãos)</span> <strong>7 (Corte)</strong></li>
+                    <li><span>Crítico</span> <strong>20 Natural (x2)</strong></li>
+                </ul>
+                <p style="font-size:0.8rem; margin-top:10px; color:#aaa;">
+                    *Efeito Verde:* +1 acerto p/ técnicas de status/condição.
+                </p>
+                <button class="roll-btn" onclick="rollDice(20, 5, 'Ataque Katana')">Atacar (1d20+5)</button>
+            </div>
+
+            <!-- Defensiva -->
+            <div class="card">
+                <h3 style="color:var(--primary-color); margin-bottom: 10px;">Defesa</h3>
+                <ul class="weapon-stats">
+                    <li><span>Esquiva (DEX)</span> <strong>1d20 + 4</strong></li>
+                    <li><span>Bloqueio (FOR)</span> <strong>1d20 + 1</strong></li>
+                </ul>
+                <p style="font-size:0.8rem; margin-top:10px; color:#aaa;">
+                    *Recomendado usar Esquiva ou Reação da Lua.*
+                </p>
+                <button class="roll-btn" onclick="rollDice(20, 4, 'Esquiva')">Esquivar (1d20+4)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Habilidades -->
+    <div class="section-title">Habilidades e Técnicas</div>
+    <div class="content-pad">
+        
+        <div class="technique-card">
+            <div class="tech-title">Visão Aguçada (Passiva Humana)</div>
+            <p>Seus olhos percebem brechas na guarda inimiga. <strong>+1 de acerto passivo</strong> sempre que atacar (já incluído no status).</p>
+        </div>
+
+        <div class="technique-card">
+            <div class="tech-title">Caçador Nato (Passiva de Origem)</div>
+            <p><strong>+2 de bônus</strong> em rolagens para encontrar/rastrear Onis ou atividades demoníacas (geralmente à noite).</p>
+            <button class="roll-btn" style="width: auto; display:inline-block; padding: 5px 10px;" onclick="rollDice(20, 4, 'Rastrear Oni (SAB+2)')">Rolar Rastreio (+4)</button>
+        </div>
+
+        <h3 style="margin: 15px 0 10px 0; border-bottom: 1px solid #444; padding-bottom: 5px;">Respiração da Lua (Tsuki no Kokyū) - Nível 1</h3>
+        
+        <div class="technique-card">
+            <div class="tech-title">1ª Forma: Lua Negra, Palácio Vespertino</div>
+            <div style="margin-bottom: 8px;">
+                <span class="tag">Passiva</span>
+                <span class="tag">Reação</span>
+            </div>
+            <p><strong>Combate Sério:</strong> Inicia com arma sacada, +1 Acerto fixo e usa SAB na Iniciativa.</p>
+            <p style="margin-top:8px; border-top:1px dashed #444; padding-top:8px;">
+                <strong>Reação:</strong> Ao ser atacado, declara contra-ataque. Rola Ataque vs Ataque. Se vencer, anula o dano recebido e causa seu dano no inimigo.
+            </p>
+        </div>
+    </div>
+
+    <!-- Inventário e Lore -->
+    <div class="section-title">Equipamento e História</div>
+    <div class="content-pad">
+        <div class="combat-grid">
+            <div class="card">
+                <h3 style="margin-bottom:10px;">Inventário</h3>
+                <ul class="inv-list">
+                    <li>Uniforme de Caçador (Padrão)</li>
+                    <li>Katana Nichirin (Verde) + Bainha</li>
+                    <li>Itens de Viagem (Rações, cantil, kit médico)</li>
+                    <li>Dinheiro: 0 Moedas de Honra</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom:10px;">História</h3>
+                <div class="lore-text">
+                    <p>Criado por Sojiro, um exterminador aposentado, Kegan não possui força bruta. Ele estudou textos antigos e utiliza sua visão anormal "câmera lenta" para dominar a caótica Respiração da Lua.</p>
+                    <p><strong>Objetivo:</strong> Encontrar a Lua Superior que feriu seu mestre.</p>
+                    <p><strong>Personalidade:</strong> Observador, silencioso e cirúrgico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... (fim da div Inventário e História) ... -->
+
+    <!-- GALERIA DE FOTOS -->
+    <div class="section-title">Galeria</div>
+    <div class="content-pad">
+        <div class="gallery-grid">
+            <!-- Foto 1 -->
+            <div class="gallery-item">
+                <img src="src/img/foto-1.png" alt="Kegan Pose de Combate">
+            </div>
+            <!-- Foto 2 -->
+            <div class="gallery-item">
+                <img src="src/img/foto-2.png" alt="Kegan Casual">
+            </div>
+            <!-- Foto 3 -->
+            <div class="gallery-item">
+                <img src="src/img/foto-3.png" alt="Kegan Detalhe Olhos">
+            </div>
+        </div>
+    </div>
+
+    <!-- ... (aqui vem o Botão do PDF que você já colocou) ... -->
+    <div class="content-pad" style="margin-bottom: 20px;">
+        <a href="Versao-Oficial-Night-Assassins-V25.01.pdf" target="_blank" class="system-btn">
+            📜 Sistema - Night Assassin's V 2.5 (PDF)
+        </a>
+        </div>
+</div>
+
+<!-- Dice Modal -->
+<div id="diceModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+        <h2 id="roll-title">Rolagem</h2>
+        <div class="dice-result" id="roll-result">0</div>
+        <div class="dice-detail" id="roll-calc">d20 + 0</div>
+        <button class="close-btn" onclick="document.getElementById('diceModal').style.display='none'">Fechar</button>
+    </div>
+</div>
+
+<!-- ... (conteúdo anterior: Inventário e História) ... -->
+
+
+</div> <!-- Fim da div .container -->
+
+<!-- Link para o arquivo JavaScript externo -->
+<script src="src/js/script.js"></script>
+</body>
+</html>
