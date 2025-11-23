@@ -9,7 +9,7 @@
 </head>
 <body>
 
-      <!-- TELA DE INTRODUÇÃO (ANIMAÇÃO) -->
+    <!-- TELA DE INTRODUÇÃO -->
     <div id="intro-overlay">
         <div class="intro-content">
             <div class="logo-container">
@@ -19,54 +19,50 @@
             <div class="loading-bar">
                 <div class="loading-progress"></div>
             </div>
-            <h2 class="intro-text">Carregando Respiração...</h2>
+            <h2 class="intro-text">Sincronizando com o Servidor...</h2>
         </div>
     </div>
 
-    <!-- ... Resto do seu código (Navbar, Main Container, etc) ... -->
-
-    <!-- Navegação -->
     <nav class="navbar">
-        <div class="logo">Shiroi-<span style="color:var(--primary-color)">Yoru</span></div>
+        <div class="logo">Night Assassin's <span style="color:var(--primary-color)">V2.5</span></div>
         <div class="nav-actions">
-            <button class="btn btn-secondary" onclick="showView('gallery')"><i class="fa-solid fa-users"></i> Galeria</button>
-            <button class="btn btn-primary" onclick="newCharacter()"><i class="fa-solid fa-plus"></i> Nova Ficha</button>
+            <button class="btn btn-secondary" onclick="window.app.showView('gallery')"><i class="fa-solid fa-users"></i> Galeria</button>
+            <button class="btn btn-primary" onclick="window.app.newCharacter()"><i class="fa-solid fa-plus"></i> Nova Ficha</button>
         </div>
     </nav>
 
     <div class="main-container">
-
         <!-- VIEW: GALERIA -->
         <div id="view-gallery" class="view-section fade-in">
             <div class="header-title">
-                <img src="src/img/logo-full-removebg-preview.png" alt="Logo Night Assassin's" class="gallery-logo">
+                <img src="src/img/logo-full-removebg-preview.png" alt="Logo" class="gallery-logo">
                 <h1>Galeria de Lendas</h1>
-                <p>Selecione um personagem para editar ou crie um novo.</p>
+                <p>Fichas online da comunidade.</p>
             </div>
             <div id="gallery-list" class="char-grid">
-                <!-- Cards via JS -->
+                <!-- Carregando... -->
+                <p style="text-align:center; color:#666;">Conectando à nuvem...</p>
             </div>
         </div>
 
         <!-- VIEW: EDITOR -->
         <div id="view-editor" class="view-section hidden">
-            
             <div class="sheet-controls">
-                <button onclick="showView('gallery')" class="btn btn-secondary">Voltar</button>
-                <button onclick="saveCharacter()" class="btn btn-primary">Salvar Personagem</button>
-                <button onclick="deleteCharacter()" class="btn btn-danger">Excluir</button>
+                <button onclick="window.app.showView('gallery')" class="btn btn-secondary">Voltar</button>
+                <button onclick="window.app.saveCharacter()" class="btn btn-primary">Salvar na Nuvem</button>
+                <button onclick="window.app.deleteCharacter()" class="btn btn-danger">Excluir</button>
             </div>
 
             <div class="container-sheet slide-up">
+                <!-- O conteúdo do formulário continua idêntico ao anterior -->
                 <header>
                     <div class="avatar-frame">
                         <img src="https://via.placeholder.com/150" alt="Avatar" id="avatar-preview">
                         <label for="avatar-upload" class="upload-overlay"><i class="fa-solid fa-camera"></i></label>
-                        <input type="file" id="avatar-upload" accept="image/*" onchange="handleAvatarUpload(this)" style="display:none">
+                        <input type="file" id="avatar-upload" accept="image/*" onchange="window.app.handleAvatarUpload(this)" style="display:none">
                     </div>
                     <div class="header-info">
                         <div class="campaign-tag">Campanha: Shiroi Yoru</div>
-                        
                         <div class="input-effect">
                             <input type="text" id="char-name" class="input-h1" placeholder="Nome do Personagem">
                             <span class="focus-border"></span>
@@ -75,31 +71,18 @@
                             <input type="text" id="char-jpname" class="input-jp" placeholder="Nome Japonês">
                             <span class="focus-border"></span>
                         </div>
-                        
                         <div class="identity-grid">
                             <div class="identity-item">
                                 <strong>Raça:</strong> 
-                                <select id="char-race" onchange="toggleEnergy()">
+                                <select id="char-race" onchange="window.app.toggleEnergy()">
                                     <option value="Exterminador">Exterminador</option>
                                     <option value="Oni">Oni</option>
                                 </select>
                             </div>
-                            <div class="identity-item">
-                                <strong>Patente:</strong> 
-                                <input type="text" id="char-rank" placeholder="Mizunoto">
-                            </div>
-                            <div class="identity-item">
-                                <strong>Idade:</strong> 
-                                <input type="text" id="char-age" placeholder="15 anos">
-                            </div>
-                            <div class="identity-item">
-                                <strong>Jogador:</strong> 
-                                <input type="text" id="char-player" placeholder="Seu Nome">
-                            </div>
-                            <div class="identity-item" style="grid-column: 1 / -1;">
-                                <strong>Conceito:</strong> 
-                                <input type="text" id="char-concept" class="full-width" placeholder="O Espadachim...">
-                            </div>
+                            <div class="identity-item"><strong>Patente:</strong> <input type="text" id="char-rank"></div>
+                            <div class="identity-item"><strong>Idade:</strong> <input type="text" id="char-age"></div>
+                            <div class="identity-item"><strong>Jogador:</strong> <input type="text" id="char-player"></div>
+                            <div class="identity-item" style="grid-column: 1 / -1;"><strong>Conceito:</strong> <input type="text" id="char-concept" class="full-width"></div>
                         </div>
                     </div>
                 </header>
@@ -108,138 +91,71 @@
                 <div class="section-title">Atributos</div>
                 <div class="content-pad">
                     <div class="attributes-grid">
-                        <div class="attr-card hover-scale" onclick="rollAttr('dex')">
-                            <span class="attr-name">DESTREZA (DEX)</span>
-                            <input type="number" id="attr-dex" value="1" onclick="event.stopPropagation()">
-                        </div>
-                        <div class="attr-card hover-scale" onclick="rollAttr('fdv')">
-                            <span class="attr-name">VONTADE (FDV)</span>
-                            <input type="number" id="attr-fdv" value="1" onclick="event.stopPropagation()">
-                        </div>
-                        <div class="attr-card hover-scale" onclick="rollAttr('vit')">
-                            <span class="attr-name">VITALIDADE (VIT)</span>
-                            <input type="number" id="attr-vit" value="1" onclick="event.stopPropagation()">
-                        </div>
-                        <div class="attr-card hover-scale" onclick="rollAttr('sab')">
-                            <span class="attr-name">SABEDORIA (SAB)</span>
-                            <input type="number" id="attr-sab" value="1" onclick="event.stopPropagation()">
-                        </div>
-                        <div class="attr-card hover-scale" onclick="rollAttr('for')">
-                            <span class="attr-name">FORÇA (FOR)</span>
-                            <input type="number" id="attr-for" value="1" onclick="event.stopPropagation()">
-                        </div>
-                        <div class="attr-card hover-scale" onclick="rollAttr('int')">
-                            <span class="attr-name">INTELIGÊNCIA (INT)</span>
-                            <input type="number" id="attr-int" value="1" onclick="event.stopPropagation()">
-                        </div>
-                        <div class="attr-card hover-scale" onclick="rollAttr('car')">
-                            <span class="attr-name">CARISMA (CAR)</span>
-                            <input type="number" id="attr-car" value="1" onclick="event.stopPropagation()">
-                        </div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('dex')"><span class="attr-name">DEX</span><input type="number" id="attr-dex" value="1"></div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('fdv')"><span class="attr-name">FDV</span><input type="number" id="attr-fdv" value="1"></div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('vit')"><span class="attr-name">VIT</span><input type="number" id="attr-vit" value="1"></div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('sab')"><span class="attr-name">SAB</span><input type="number" id="attr-sab" value="1"></div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('for')"><span class="attr-name">FOR</span><input type="number" id="attr-for" value="1"></div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('int')"><span class="attr-name">INT</span><input type="number" id="attr-int" value="1"></div>
+                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('car')"><span class="attr-name">CAR</span><input type="number" id="attr-car" value="1"></div>
                     </div>
                 </div>
 
                 <!-- Status -->
-                <div class="section-title">Status de Combate</div>
+                <div class="section-title">Status</div>
                 <div class="content-pad">
                     <div class="bars-container">
-                        <div class="resource-box hover-glow">
-                            <div>
-                                <span class="attr-name">PONTOS DE VIDA (PDV)</span>
-                                <div class="res-controls">
-                                    <input type="number" id="hp-curr" value="12"> / <input type="number" id="hp-max" value="12">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resource-box hover-glow">
-                            <div>
-                                <span class="attr-name" id="lbl-energy">RESPIRAÇÃO (PDR)</span>
-                                <div class="res-controls">
-                                    <input type="number" id="en-curr" value="5"> / <input type="number" id="en-max" value="5">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resource-box hover-glow">
-                            <div>
-                                <span class="attr-name">DESLOCAMENTO</span>
-                                <input type="text" id="char-speed" placeholder="7m + DEX" class="simple-input">
-                            </div>
-                        </div>
-                        <div class="resource-box hover-glow">
-                            <div style="width:100%">
-                                <span class="attr-name">INICIATIVA</span>
-                                <button class="roll-btn pulse-btn" onclick="rollAttr('dex')">Rolar (1d20+DEX)</button>
-                            </div>
-                        </div>
+                        <div class="resource-box"><div><span class="attr-name">PDV</span><div class="res-controls"><input type="number" id="hp-curr"> / <input type="number" id="hp-max"></div></div></div>
+                        <div class="resource-box"><div><span class="attr-name" id="lbl-energy">PDR</span><div class="res-controls"><input type="number" id="en-curr"> / <input type="number" id="en-max"></div></div></div>
+                        <div class="resource-box"><div><span class="attr-name">DESLOCAMENTO</span><input type="text" id="char-speed" class="simple-input"></div></div>
+                        <div class="resource-box"><div style="width:100%"><span class="attr-name">INICIATIVA</span><button class="roll-btn pulse-btn" onclick="window.app.rollAttr('dex')">Rolar</button></div></div>
                     </div>
-
                     <div class="combat-grid">
-                        <div class="card hover-lift">
-                            <h3 style="color:var(--primary-color); margin-bottom: 10px;">Arma Principal</h3>
-                            <input type="text" id="weapon-name" placeholder="Nome da Arma" class="weapon-input">
+                        <div class="card">
+                            <h3>Arma Principal</h3>
+                            <input type="text" id="weapon-name" class="weapon-input" placeholder="Nome">
                             <ul class="weapon-stats">
-                                <li><span>Acerto</span> <input type="text" id="weapon-hit" placeholder="+5"></li>
-                                <li><span>Dano</span> <input type="text" id="weapon-dmg" placeholder="1d6 + 4"></li>
-                                <li><span>Crítico</span> <input type="text" id="weapon-crit" placeholder="19/20"></li>
+                                <li><span>Acerto</span> <input type="text" id="weapon-hit"></li>
+                                <li><span>Dano</span> <input type="text" id="weapon-dmg"></li>
+                                <li><span>Crítico</span> <input type="text" id="weapon-crit"></li>
                             </ul>
-                            <textarea id="weapon-desc" class="small-area" placeholder="Propriedades..."></textarea>
+                            <textarea id="weapon-desc" class="small-area" placeholder="Propriedades"></textarea>
                         </div>
-
-                        <div class="card hover-lift">
-                            <h3 style="color:var(--primary-color); margin-bottom: 10px;">Defesa</h3>
+                        <div class="card">
+                            <h3>Defesa</h3>
                             <ul class="weapon-stats">
-                                <li><span>Esquiva (DEX)</span> <strong>1d20 + <span id="disp-dex">0</span></strong></li>
-                                <li><span>Bloqueio (FOR)</span> <strong>1d20 + <span id="disp-for">0</span></strong></li>
+                                <li><span>Esquiva</span> <strong>1d20 + <span id="disp-dex">0</span></strong></li>
+                                <li><span>Bloqueio</span> <strong>1d20 + <span id="disp-for">0</span></strong></li>
                             </ul>
-                            <p style="font-size:0.8rem; margin-top:10px; color:#aaa;">*Calculado automaticamente*</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Habilidades -->
-                <div class="section-title">Habilidades e Técnicas</div>
-                <div class="content-pad">
-                    <div class="card hover-lift">
-                        <textarea id="char-skills" class="large-area" placeholder="Liste aqui suas Respirações..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Equipamento -->
-                <div class="section-title">Equipamento e História</div>
+                <!-- Texto Areas -->
+                <div class="section-title">Habilidades</div>
+                <div class="content-pad"><div class="card"><textarea id="char-skills" class="large-area"></textarea></div></div>
+                
+                <div class="section-title">Equipamento & Lore</div>
                 <div class="content-pad">
                     <div class="combat-grid">
-                        <div class="card hover-lift">
-                            <h3 style="margin-bottom:10px;">Inventário</h3>
-                            <textarea id="char-inventory" class="medium-area" placeholder="Seus itens..."></textarea>
-                        </div>
-                        <div class="card hover-lift">
-                            <h3 style="margin-bottom:10px;">História</h3>
-                            <textarea id="char-lore" class="medium-area" placeholder="Sua lenda..."></textarea>
-                        </div>
+                        <div class="card"><h3>Inventário</h3><textarea id="char-inventory" class="medium-area"></textarea></div>
+                        <div class="card"><h3>História</h3><textarea id="char-lore" class="medium-area"></textarea></div>
                     </div>
                 </div>
 
-                <!-- Galeria -->
-                <div class="section-title">Galeria de Fotos</div>
+                <!-- Galeria Fotos -->
+                <div class="section-title">Fotos</div>
                 <div class="content-pad">
-                    <div style="margin-bottom: 15px;">
-                        <label for="gallery-upload" class="btn btn-primary" style="display:inline-block; cursor:pointer;">
-                            <i class="fa-solid fa-plus"></i> Adicionar Foto
-                        </label>
-                        <input type="file" id="gallery-upload" accept="image/*" onchange="addGalleryImage(this)" style="display:none">
-                    </div>
+                    <div style="margin-bottom:15px;"><label for="gallery-upload" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Foto</label><input type="file" id="gallery-upload" accept="image/*" onchange="window.app.addGalleryImage(this)" style="display:none"></div>
                     <div id="char-gallery-grid" class="gallery-grid"></div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Toast Container (Notificações) -->
+    <!-- Toast & Modal -->
     <div id="toast-container"></div>
-
-    <!-- Dice Modal -->
-    <div id="diceModal" class="modal" onclick="closeModal(event)">
+    <div id="diceModal" class="modal" onclick="window.app.closeModal(event)">
         <div class="modal-content pop-in">
             <h2 id="roll-title">Rolagem</h2>
             <div class="dice-result" id="roll-result">0</div>
@@ -248,6 +164,7 @@
         </div>
     </div>
 
-    <script src="src/js/script.js"></script>
+    <!-- IMPORTANTE: TIPO MODULE PARA USAR FIREBASE -->
+    <script type="module" src="src/js/script.js"></script>
 </body>
 </html>
