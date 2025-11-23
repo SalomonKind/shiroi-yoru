@@ -90,15 +90,37 @@
                 <!-- Atributos -->
                 <div class="section-title">Atributos</div>
                 <div class="content-pad">
-                    <div class="attributes-grid">
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('dex')"><span class="attr-name">DEX</span><input type="number" id="attr-dex" value="1"></div>
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('fdv')"><span class="attr-name">FDV</span><input type="number" id="attr-fdv" value="1"></div>
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('vit')"><span class="attr-name">VIT</span><input type="number" id="attr-vit" value="1"></div>
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('sab')"><span class="attr-name">SAB</span><input type="number" id="attr-sab" value="1"></div>
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('for')"><span class="attr-name">FOR</span><input type="number" id="attr-for" value="1"></div>
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('int')"><span class="attr-name">INT</span><input type="number" id="attr-int" value="1"></div>
-                        <div class="attr-card hover-scale" onclick="window.app.rollAttr('car')"><span class="attr-name">CAR</span><input type="number" id="attr-car" value="1"></div>
-                    </div>
+                    <!-- index.html (Seção de Atributos Corrigida) -->
+<div class="attributes-grid">
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('dex')">
+        <span class="attr-name">DEX</span>
+        <input type="number" id="attr-dex" value="1" onclick="event.stopPropagation()">
+    </div>
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('fdv')">
+        <span class="attr-name">FDV</span>
+        <input type="number" id="attr-fdv" value="1" onclick="event.stopPropagation()">
+    </div>
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('vit')">
+        <span class="attr-name">VIT</span>
+        <input type="number" id="attr-vit" value="1" onclick="event.stopPropagation()">
+    </div>
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('sab')">
+        <span class="attr-name">SAB</span>
+        <input type="number" id="attr-sab" value="1" onclick="event.stopPropagation()">
+    </div>
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('for')">
+        <span class="attr-name">FOR</span>
+        <input type="number" id="attr-for" value="1" onclick="event.stopPropagation()">
+    </div>
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('int')">
+        <span class="attr-name">INT</span>
+        <input type="number" id="attr-int" value="1" onclick="event.stopPropagation()">
+    </div>
+    <div class="attr-card hover-scale" onclick="window.app.rollAttr('car')">
+        <span class="attr-name">CAR</span>
+        <input type="number" id="attr-car" value="1" onclick="event.stopPropagation()">
+    </div>
+</div>
                 </div>
 
                 <!-- Status -->
