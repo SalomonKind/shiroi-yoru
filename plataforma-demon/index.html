@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Night Assassin's V2.5</title>
+    <title>Shiroi Yoru: Caçadores de Oni</title>
     <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="src/img/favicon.ico" type="image/x-icon">
 </head>
 <body>
 
@@ -19,12 +20,12 @@
             <div class="loading-bar">
                 <div class="loading-progress"></div>
             </div>
-            <h2 class="intro-text">Sincronizando com o Servidor...</h2>
+            <h2 class="intro-text">Carregando a Respiração...</h2>
         </div>
     </div>
 
     <nav class="navbar">
-        <div class="logo">Night Assassin's <span style="color:var(--primary-color)">V2.5</span></div>
+        <div class="logo">Shiroi Yoru: <span style="color:var(--primary-color)">Caçadores de Oni</span></div>
         <div class="nav-actions">
             <button class="btn btn-secondary" onclick="window.app.showView('gallery')"><i class="fa-solid fa-users"></i> Galeria</button>
             <button class="btn btn-primary" onclick="window.app.newCharacter()"><i class="fa-solid fa-plus"></i> Nova Ficha</button>
@@ -43,6 +44,16 @@
                 <!-- Carregando... -->
                 <p style="text-align:center; color:#666;">Conectando à nuvem...</p>
             </div>
+             <footer class="gallery-footer">
+        <a href="Versao-Oficial-Night-Assassins-V25.01.pdf" target="_blank" class="btn-system">
+            <i class="fa-solid fa-scroll"></i> Acessar Sistema (PDF)
+        </a>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Night Assassin's RPG Platform.</p>
+            <p class="credits">Desenvolvido com <i class="fa-solid fa-heart" style="color:var(--primary-color)"></i> por <span style="color:var(--accent-color)">Salomão Gentil</span></p>
+        </div>
+    </footer>
         </div>
 
         <!-- VIEW: EDITOR -->
@@ -137,8 +148,9 @@
                             <h3>Arma Principal</h3>
                             <input type="text" id="weapon-name" class="weapon-input" placeholder="Nome">
                             <ul class="weapon-stats">
-                                <li><span>Acerto</span> <input type="text" id="weapon-hit"></li>
-                                <li><span>Dano</span> <input type="text" id="weapon-dmg"></li>
+                                <li><span>Acerto (1d20 + DEX + 1)</span> <input type="text" id="weapon-hit"></li>
+                                <li><span>Dano (1 Mão)</span> <input type="text" id="weapon-dmg"></li>
+                                <li><span>Dano (2 Mão)</span> <input type="text" id="weapon-dmg"></li>
                                 <li><span>Crítico</span> <input type="text" id="weapon-crit"></li>
                             </ul>
                             <textarea id="weapon-desc" class="small-area" placeholder="Propriedades"></textarea>
@@ -146,8 +158,8 @@
                         <div class="card">
                             <h3>Defesa</h3>
                             <ul class="weapon-stats">
-                                <li><span>Esquiva</span> <strong>1d20 + <span id="disp-dex">0</span></strong></li>
-                                <li><span>Bloqueio</span> <strong>1d20 + <span id="disp-for">0</span></strong></li>
+                                <li><span>Esquiva (DEX)</span> <strong>1d20 + <span id="disp-dex">0</span></strong></li>
+                                <li><span>Bloqueio (FOR)</span> <strong>1d20 + <span id="disp-for">0</span></strong></li>
                             </ul>
                         </div>
                     </div>
