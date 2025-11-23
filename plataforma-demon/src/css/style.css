@@ -388,8 +388,8 @@ textarea { width: 100%; background: #1e1e1e; border: 1px solid #444; color: #e0e
     gap: 10px;
     padding: 12px 35px;
     background: transparent;
-    border: 2px solid var(--accent-color); /* Dourado */
-    color: var(--accent-color);
+    border: 2px solid var(--primary-color); /* Dourado */
+    color: honeydew;
     text-decoration: none;
     font-family: 'Cinzel', serif;
     font-weight: bold;
@@ -401,9 +401,9 @@ textarea { width: 100%; background: #1e1e1e; border: 1px solid #444; color: #e0e
 }
 
 .btn-system:hover {
-    background: var(--accent-color);
-    color: #121212; /* Texto preto no fundo dourado */
-    box-shadow: 0 0 25px rgba(252, 211, 77, 0.4); /* Brilho Dourado */
+    background: var(--primary-color);
+    color: #ffffff; /* Texto preto no fundo dourado */
+    box-shadow: 0 0 25px rgba(195, 20, 50, 0.6); /* Brilho Dourado */
     transform: translateY(-3px);
 }
 
